@@ -6,7 +6,7 @@ import game.MouseEventType
 import java.awt.*
 
 
-class PawnPromoter(private val x: Int, private val y: Int, private val alliance: Alliance, private val game: Game) {
+class PawnPromoter(x: Int, y: Int, alliance: Alliance, private val game: Game) {
     private val queen = loadImage("${alliance.string}-Queen.png")
     private val rook = loadImage("${alliance.string}-Rook.png")
     private val bishop = loadImage("${alliance.string}-Bishop.png")
