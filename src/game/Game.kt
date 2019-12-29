@@ -7,21 +7,21 @@ import java.awt.*
 // TODO: Check for checkmate
 class Game(title: String) : Canvas(), Runnable {
     @Suppress("unused")
-    private val window = Window(640, 640, title, this);
+    public val window = Window(640, 640, title, this)
 
-    private var fps = 60.0;
-    private var running = true;
+    private var fps = 60.0
+    private var running = true
 
-    private lateinit var thread: Thread;
-    public lateinit var board: Board;
-    public lateinit var mouse: Mouse;
+    private lateinit var thread: Thread
+    public lateinit var board: Board
+    public lateinit var mouse: Mouse
 
     private val above = ArrayList<(g: Graphics2D) -> Unit>()
     private val below = ArrayList<(g: Graphics2D) -> Unit>()
     private val linux = System.getProperty("os.name").indexOf("nux") > 0
     public var overlayed = false
 
-    public val moves = ArrayList<Move>();
+    public val moves = ArrayList<Move>()
     public var turn = Alliance.White
 
     public fun start(window: Window) {

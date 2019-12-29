@@ -7,6 +7,8 @@ import pieces.*
 import java.awt.Color
 import java.awt.Point
 import java.awt.Rectangle
+import javax.swing.JOptionPane
+import kotlin.system.exitProcess
 
 class Board(private val game: Game, public val tileSize: Int) {
     val tiles: Array<Array<Tile>> = Array(8) { y ->
@@ -20,6 +22,10 @@ class Board(private val game: Game, public val tileSize: Int) {
 
     private var whiteKingInCheck = false
     private var blackKingInCheck = false
+
+
+    private var whiteKingMated = false
+    private var blackKingMated = false
 
     init {
         tiles[1].forEachIndexed { x, _ ->
@@ -97,6 +103,21 @@ class Board(private val game: Game, public val tileSize: Int) {
     public fun alertMoveAdded(move: Move) {
         whiteKingInCheck = whiteKing.inCheck()
         blackKingInCheck = blackKing.inCheck()
+
+        whiteKingMated = whiteKing.isMated()
+        blackKingMated = blackKing.isMated()
+
+        val frame = game.window.frame
+
+        if(whiteKingMated) {
+            JOptionPane.showMessageDialog(frame, "Checkmate! Black wins.")
+            exitProcess(0)
+        }
+
+        if(blackKingMated) {
+            JOptionPane.showMessageDialog(frame, "Checkmate! White wins.")
+            exitProcess(0)
+        }
     }
 
     private fun addPiece(piece: Piece) {

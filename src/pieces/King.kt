@@ -63,6 +63,7 @@ class King(x: Int, y: Int, alliance: Alliance, game: Game, board: Board) :
         }
         return false
     }
+
     private fun inCheck(x: Int, y: Int): Boolean {
         return inCheck(Point(x, y))
     }
@@ -72,8 +73,9 @@ class King(x: Int, y: Int, alliance: Alliance, game: Game, board: Board) :
     }
 
     fun isMated(): Boolean {
-        // TODO: Allow pieces to block check
-        return this.inCheck() && getValidMoves().isEmpty()
+        return this.inCheck() && !game.board.tiles.reduce { a, b -> a.plus(b) }.any {
+            it.piece != null && it.piece!!.alliance == this.alliance && it.piece!!.getValidMoves().isNotEmpty()
+        }
     }
 
     override fun move(move: Point) {

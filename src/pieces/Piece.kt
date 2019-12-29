@@ -37,7 +37,7 @@ abstract class Piece(
         return isValidMove(Point(x, y))
     }
 
-    protected abstract fun getValidMoves(): Array<Point>
+    public abstract fun getValidMoves(): Array<Point>
     public abstract fun getCoveredSquares(): Array<Point>
 
     private fun getValidMovesCached(): Array<Point> {
