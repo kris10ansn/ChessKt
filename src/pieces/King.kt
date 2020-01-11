@@ -28,7 +28,7 @@ class King(x: Int, y: Int, alliance: Alliance, game: Game, board: Board) :
     private fun isValidCastleMove(move: Point): Boolean {
         val diff = Point(move.x - x, move.y - y)
 
-        return if (abs(diff.x) == 2 && diff.y == 0) {
+        return if (!inCheck() && abs(diff.x) == 2 && diff.y == 0) {
             val dir = diff.x / abs(diff.x)
             val long = dir == -1
             val length = if (long) 3 else 2
